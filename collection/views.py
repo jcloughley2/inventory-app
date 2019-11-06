@@ -7,3 +7,12 @@ def index(request):
     return render(request, 'index.html', {
         'lists': lists,
     })
+
+def list_detail(request, slug):
+    # grab the object...
+    list = List.objects.get(slug=slug)
+
+    # and pass to the template
+    return render(request, 'lists/list_detail.html', {
+        'list': list,
+    })

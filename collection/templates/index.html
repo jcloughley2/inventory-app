@@ -5,7 +5,11 @@
 
 {% block content %}
     {% for list in lists %}
-    	<h2>{{ list.name }}</h2>
+		<h2>
+        	<a href="{% url 'list_detail' slug=list.slug %}">
+            	{{ list.name }}
+        	</a>
+    	</h2>
     	<p>{{ list.description }}</p>
     {% endfor %}
 {% endblock content %} 
