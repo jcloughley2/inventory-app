@@ -4,6 +4,8 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Hello World!</h1>
-    <p>{{ number }}</p>
+    {% for list in lists %}
+    	<h2>{{ list.name }}</h2>
+    	<p>{{ list.description }}</p>
+    {% endfor %}
 {% endblock content %} 

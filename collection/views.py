@@ -1,9 +1,9 @@
 from django.shortcuts import render
+from collection.models import List
 
+# the rewritten view!
 def index(request):
-    # defining the variable
-    number = 6
-    # passing the variable to the view
+    lists = List.objects.all().order_by('?')
     return render(request, 'index.html', {
-        'number': number,
+        'lists': lists,
     })
