@@ -1,7 +1,8 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 from collection import views
+#from django.conf.urls import path, include
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -16,5 +17,8 @@ urlpatterns = [
         name='list_detail'),
     path('lists/<slug>/edit/', views.edit_list,
         name='edit_list'),
+    path('admin/', admin.site.urls),
+    path('accounts/',
+        include('registration.backends.simple.urls')),
     path('admin/', admin.site.urls),
 ]
