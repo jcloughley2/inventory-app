@@ -14,5 +14,7 @@ urlpatterns = [
         name='contact'),
     path('lists/<slug>/', views.list_detail,
         name='list_detail'),
+    path('lists/<slug>/edit/', views.edit_list,
+        name='edit_list'),
     path('admin/', admin.site.urls),
 ]
