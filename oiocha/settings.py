@@ -23,10 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'x%namk@6cml9ydzk0s(jdnz*!j&69#%!0nz6d2m&%_h9#gi6i8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = False
+# FIXME: Update me before launch!
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -128,4 +127,3 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
 LOGIN_REDIRECT_URL = "home"
-
