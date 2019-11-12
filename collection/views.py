@@ -113,3 +113,15 @@ def edit_list(request, slug):
         'form': form,
     })
 
+def browse_by_name(request, initial=None):
+    if initial:
+        lists = List.objects.filter(name__istartswith=initial)
+        lists = lists.order_by('name')
+    else:
+        lists = List.objects.all().order_by('name')
+
+    return render(request, 'search/search.html', {
+        'lists': lists,
+        'initial': initial,
+    })
+

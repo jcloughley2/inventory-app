@@ -9,6 +9,7 @@ from django.contrib.auth.views import(
     PasswordResetCompleteView
 )
 from collection.backends import MyRegistrationView
+from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -24,4 +25,13 @@ urlpatterns = [
     path('accounts/create_list/', views.create_list,name='registration_create_list'),
     path('accounts/',include('registration.backends.default.urls')),
     path('admin/', admin.site.urls),
+    path('browse/name/',views.browse_by_name, name='browse'),
+    path('browse/name/<initial>/',views.browse_by_name, name='browse_by_name'),
+    path('browse/', RedirectView.as_view(pattern_name='browse', permanent=True)),
+    path('lists/', RedirectView.as_view(
+        pattern_name='browse', permanent=True)),
+    path('lists/<slug>/',
+        views.list_detail, name='list_detail'),
+    path('lists/<slug>/edit/',
+        views.edit_list, name='edit_list'),
 ]
