@@ -4,7 +4,13 @@
 {% endblock title %}
 
 {% block content %}
-    	<h2>{{ list.name }}</h2>
-    	<p>{{ list.description }}</p>
-    	<a href="{% url 'edit_list' slug=list.slug %}">Edit me!</a>
-{% endblock content %} 
+    <h1>{{ list.name }}</h1>
+    <p>{{ list.description }}</p>
+    {% if user == list.user %}
+        <p>
+            <a href="{% url 'edit_list' slug=list.slug %}">
+                Edit me!
+            </a>
+        </p>
+    {% endif %}
+{% endblock content %}
