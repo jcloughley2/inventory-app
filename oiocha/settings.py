@@ -131,3 +131,7 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
 LOGIN_REDIRECT_URL = "home"
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
