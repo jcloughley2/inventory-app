@@ -24,10 +24,6 @@ SECRET_KEY = 'x%namk@6cml9ydzk0s(jdnz*!j&69#%!0nz6d2m&%_h9#gi6i8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-<<<<<<< HEAD
-=======
-# FIXME: Update me before launch!
->>>>>>> aad4790722e6696b5f765885d5268c03237b6492
 ALLOWED_HOSTS = ['*']
 
 # Application definition
