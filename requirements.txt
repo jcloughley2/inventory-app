@@ -1,6 +1,5 @@
 Django==2.0.10
 django-registration-redux==2.0
 pytz==2019.3
-psycopg2==2.7.3.2
-gunicorn
-django-heroku
+hellowebapp-deploy
+psycopg2==2.7.3.2 
