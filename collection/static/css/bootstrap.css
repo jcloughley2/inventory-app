@@ -5986,6 +5986,3 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 @media print {
   .hidden-print {
     display: none !important; } }
-
-body {
-  background-color: cornflowerblue; }
