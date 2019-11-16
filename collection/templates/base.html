@@ -29,6 +29,9 @@
                         <a href="{% url 'browse' %}">Browse</a>
                     </li>
                     {% if user.is_authenticated %}
+                     <li>
+                        <a href="{% url 'registration_create_list' %}">Create A New List</a>
+                    </li>
                     <li>
                         <a href="{% url 'auth_logout' %}">Logout</a>
                     </li>
@@ -39,8 +42,7 @@
                     <li>
                         <a href="{% url 'registration_register' %}">Register</a>
                     </li>
-
-    {% endif %}
+                    {% endif %}
                 </ul>
             </nav>
         </header>
