@@ -1162,6 +1162,7 @@ const Alert = (($) => {
 
 export default Alert
 
+<<<<<<< HEAD
 import Util from './util'
 
 
@@ -4899,6 +4900,8 @@ const Util = (($) => {
 
 export default Util
 
+=======
+>>>>>>> 6f41e0bdf949773b6d5ceeb24a29509dc28c7b87
 /**
  * --------------------------------------------------------------------------
  * Bootstrap (v4.0.0-alpha.6): button.js
