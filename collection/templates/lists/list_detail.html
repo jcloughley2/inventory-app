@@ -9,8 +9,14 @@
     {% if user == list.user %}
         <p>
             <a href="{% url 'edit_list' slug=list.slug %}">
-                Edit me!
+                Edit meeee!
             </a>
         </p>
     {% endif %}
+    <ul>
+          {% for item in list.includeditems.all %}
+             <li> {{item.name}}</li>
+          {% endfor %}
+        </ul>
+
 {% endblock content %}

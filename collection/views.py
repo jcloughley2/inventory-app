@@ -77,6 +77,7 @@ def create_list(request):
 
     return render(request, 'lists/create_list.html', {
         'form': form,
+        'list_list': List.objects.all()
     })
 
 # this is the view we're updating
@@ -124,4 +125,3 @@ def browse_by_name(request, initial=None):
         'lists': lists,
         'initial': initial,
     })
-
