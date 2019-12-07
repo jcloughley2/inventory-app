@@ -66,28 +66,31 @@ def edit_list(request, slug):
         raise Http404
 
     # set the form we're using...
-    # form_class = ListForm
+    form_class = ListForm
 
     # if we're coming to this view from a submitted form,
     # do this
     if request.method == 'POST':
         # grab the data from the submitted form and
         # apply to the form
-        #form = form_class(data=request.POST, instance=list)
-        form = ItemInlineFormSet(request.POST, request.FILES, instance=list)
-        if form.is_valid():
+        form = form_class(data=request.POST, instance=list)
+        form2 = ItemInlineFormSet(request.POST, request.FILES, instance=list)
+        if form.is_valid() and form2.is_valid():
             # save the new data
             form.save()
+            form2.save()
             return redirect('list_detail', slug=list.slug)
 
     # otherwise just create the form
     else:
-        form = ItemInlineFormSet(instance=list)
+        form = form_class(instance=list)
+        form2 = ItemInlineFormSet(instance=list)
 
     # and render the template
     return render(request, 'lists/edit_list.html', {
         #'list': list,
         'form': form,
+        'form2': form2,
     })
 
 # --

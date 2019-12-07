@@ -8,6 +8,9 @@
     <form role="form" action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ form2.as_p }}
+        <h2>Items</h2>
+<!--     	{{ children.as_p }} -->
         <button type="submit">Submit</button>
     </form>
 {% endblock content %}  
