@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from collection.forms import ListForm
-from collection.models import List
+from collection.models import List, Item
 from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from django.forms.models import inlineformset_factory
 
 # the rewritten view!
 def index(request):
@@ -58,20 +59,22 @@ def create_list(request):
 def edit_list(request, slug):
     # grab the object...
     list = List.objects.get(slug=slug)
+    ItemInlineFormSet = inlineformset_factory(List, Item, fields=('name',))
 
     # make sure the logged in user is the owner of the list
     if list.user != request.user:
         raise Http404
 
     # set the form we're using...
-    form_class = ListForm
+    # form_class = ListForm
 
     # if we're coming to this view from a submitted form,
     # do this
     if request.method == 'POST':
         # grab the data from the submitted form and
         # apply to the form
-        form = form_class(data=request.POST, instance=list)
+        #form = form_class(data=request.POST, instance=list)
+        form = ItemInlineFormSet(request.POST, request.FILES, instance=list)
         if form.is_valid():
             # save the new data
             form.save()
@@ -79,13 +82,30 @@ def edit_list(request, slug):
 
     # otherwise just create the form
     else:
-        form = form_class(instance=list)
+        form = ItemInlineFormSet(instance=list)
 
     # and render the template
     return render(request, 'lists/edit_list.html', {
-        'list': list,
+        #'list': list,
         'form': form,
     })
+
+# --
+
+# def manage_books(request, author_id):
+#     author = Author.objects.get(pk=author_id)
+#     BookInlineFormSet = inlineformset_factory(Author, Book, fields=('title',))
+#     if request.method == "POST":
+#         form = BookInlineFormSet(request.POST, request.FILES, instance=author)
+#         if form.is_valid():
+#             form.save()
+#             # Do something. Should generally end with a redirect. For example:
+#             return HttpResponseRedirect(author.get_absolute_url())
+#     else:
+#         form = BookInlineFormSet(instance=author)
+#     return render(request, 'manage_books.html', {'form': form})
+
+# ---
 
 def browse_by_name(request, initial=None):
     if initial:
