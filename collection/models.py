@@ -9,8 +9,8 @@ class List(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,
         blank=True, null=True)
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
@@ -18,5 +18,5 @@ class Item(models.Model):
     list = models.ForeignKey(List, related_name='includeditems', on_delete=models.CASCADE,
         blank=True, null=True)
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
