@@ -59,38 +59,36 @@ def create_list(request):
 def edit_list(request, slug):
     # grab the object...
     list = List.objects.get(slug=slug)
+
     ItemInlineFormSet = inlineformset_factory(List, Item, fields=('name',))
+    form_class = ListForm
 
     # make sure the logged in user is the owner of the list
     if list.user != request.user:
         raise Http404
-
-    # set the form we're using...
-    form_class = ListForm
 
     # if we're coming to this view from a submitted form,
     # do this
     if request.method == 'POST':
         # grab the data from the submitted form and
         # apply to the form
-        form = form_class(data=request.POST, instance=list)
-        form2 = ItemInlineFormSet(request.POST, request.FILES, instance=list)
-        if form.is_valid() and form2.is_valid():
+        listform = form_class(data=request.POST, instance=list)
+        itemform = ItemInlineFormSet(request.POST, request.FILES, instance=list)
+        if listform.is_valid() and itemform.is_valid():
             # save the new data
-            form.save()
-            form2.save()
+            listform.save()
+            itemform.save()
             return redirect('list_detail', slug=list.slug)
 
     # otherwise just create the form
     else:
-        form = form_class(instance=list)
-        form2 = ItemInlineFormSet(instance=list)
+        listform = form_class(instance=list)
+        itemform = ItemInlineFormSet(instance=list)
 
     # and render the template
     return render(request, 'lists/edit_list.html', {
-        #'list': list,
-        'form': form,
-        'form2': form2,
+        'listform': listform,
+        'itemform': itemform,
     })
 
 # --
