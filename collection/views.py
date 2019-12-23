@@ -87,6 +87,7 @@ def edit_list(request, slug):
 
     # and render the template
     return render(request, 'lists/edit_list.html', {
+        'list': list,
         'listform': listform,
         'itemform': itemform,
     })
