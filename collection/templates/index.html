@@ -4,12 +4,18 @@
 {% endblock title %}
 
 {% block content %}
-    {% for list in lists %}
-		<h2>
-        	<a href="{% url 'list_detail' slug=list.slug %}">
-            	{{ list.name }}
-        	</a>
-    	</h2>
-    	<p>{{ list.description }}</p>
-    {% endfor %}
+	<div class="list-card-container">
+    	{% for list in lists %}
+			<div class="list-card">
+				<a href="#" class="list-tag">Tag</a>
+				<h3 class="mb-0">{{ list.name }}</h3>
+				<ul>
+        			{% for item in list.includeditems.all %}
+            			<li> {{item.name}}</li>
+        			{% endfor %}
+    			</ul>
+				<a href="{% url 'list_detail' slug=list.slug %}" class="stretched-link">Read More</a>
+			</div>
+    	{% endfor %}
+    </div>
 {% endblock content %} 

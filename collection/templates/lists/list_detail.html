@@ -5,18 +5,17 @@
 
 {% block content %}
     <h1>{{ list.name }}</h1>
+    <ul>
+        {% for item in list.includeditems.all %}
+            <li> {{item.name}}</li>
+        {% endfor %}
+    </ul>
     <p>{{ list.description }}</p>
     {% if user == list.user %}
-        <p>
-            <a href="{% url 'edit_list' slug=list.slug %}">
-                Edit meeee!
-            </a>
-        </p>
+    <p>
+        <a href="{% url 'edit_list' slug=list.slug %}">
+            Edit meeee!
+        </a>
+    </p>
     {% endif %}
-    <ul>
-          {% for item in list.includeditems.all %}
-             <li> {{item.name}}</li>
-          {% endfor %}
-        </ul>
-
 {% endblock content %}
