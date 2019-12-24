@@ -5,13 +5,12 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.forms.models import inlineformset_factory
+from django.http import HttpResponse
+#from django.views.generic.list import ListView
+from django.views.generic.list import ListView
 
-# the rewritten view!
-def index(request):
-    lists = List.objects.all().order_by('?')
-    return render(request, 'index.html', {
-        'lists': lists,
-    })
+class Home(ListView):
+   model = List
 
 def list_detail(request, slug):
     # grab the object...
@@ -22,7 +21,6 @@ def list_detail(request, slug):
         'list': list,
     })
 
-# add below your edit_list view
 def create_list(request):
     form_class = ListForm
 
@@ -54,7 +52,6 @@ def create_list(request):
         'list_list': List.objects.all()
     })
 
-# this is the view we're updating
 @login_required
 def edit_list(request, slug):
     # grab the object...
@@ -91,23 +88,6 @@ def edit_list(request, slug):
         'listform': listform,
         'itemform': itemform,
     })
-
-# --
-
-# def manage_books(request, author_id):
-#     author = Author.objects.get(pk=author_id)
-#     BookInlineFormSet = inlineformset_factory(Author, Book, fields=('title',))
-#     if request.method == "POST":
-#         form = BookInlineFormSet(request.POST, request.FILES, instance=author)
-#         if form.is_valid():
-#             form.save()
-#             # Do something. Should generally end with a redirect. For example:
-#             return HttpResponseRedirect(author.get_absolute_url())
-#     else:
-#         form = BookInlineFormSet(instance=author)
-#     return render(request, 'manage_books.html', {'form': form})
-
-# ---
 
 def browse_by_name(request, initial=None):
     if initial:
