@@ -8,18 +8,12 @@ from django.forms.models import inlineformset_factory
 from django.http import HttpResponse
 #from django.views.generic.list import ListView
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView 
 
 class Home(ListView):
    model = List
 
-def list_detail(request, slug):
-    # grab the object...
-    list = List.objects.get(slug=slug)
 
-    # and pass to the template
-    return render(request, 'lists/list_detail.html', {
-        'list': list,
-    })
 
 def create_list(request):
     form_class = ListForm
@@ -100,3 +94,61 @@ def browse_by_name(request, initial=None):
         'lists': lists,
         'initial': initial,
     })
+
+from .models import *
+from .forms import *
+from django.views.generic.edit import CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.db import transaction
+
+class ListCreate(CreateView):
+    model = List
+    template_name = 'lists/list_create.html'
+    form_class = ListForm
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        data = super(ListCreate, self).get_context_data(**kwargs) #what?
+        
+        # data.slug = slugify(list.name)
+        if self.request.POST:
+            data['items'] = ItemFormSet(self.request.POST) #what?
+        else:
+            data['items'] = ItemFormSet() #what?
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        items = context['items']
+        with transaction.atomic():
+            form.instance.created_by = self.request.user
+            # form.instance.slug = 'testslug2'
+            self.object = form.save()
+            self.object.user = self.request.user
+            # self.object.slug = slugify(self.object.name)
+            if items.is_valid():
+                items.instance = self.object
+                items.save()
+        return super(ListCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('list_detail', kwargs={'slug': self.object.slug})
+
+
+class ListDetail(DetailView):
+    model = List
+    template_name = 'lists/list_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ListDetail, self).get_context_data(**kwargs)
+        return context
+
+# def list_detail(request, slug):
+#     # grab the object...
+#     list = List.objects.get(slug=slug)
+
+#     # and pass to the template
+#     return render(request, 'lists/list_detail.html', {
+#         'list': list,
+#     })
+

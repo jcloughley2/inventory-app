@@ -15,7 +15,7 @@ class List(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=255)
 
-    list = models.ForeignKey(List, related_name='includeditems', on_delete=models.CASCADE,
+    list = models.ForeignKey(List, related_name='includeditems', on_delete=models.CASCADE, #could be a problem?
         blank=True, null=True)
 
     def __str__(self):
