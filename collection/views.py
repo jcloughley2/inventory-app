@@ -125,7 +125,7 @@ class ListCreate(CreateView):
             # form.instance.slug = 'testslug2'
             self.object = form.save()
             self.object.user = self.request.user
-            # self.object.slug = slugify(self.object.name)
+            self.object.slug = slugify(self.object.name) + "-" + str(self.object.pk)
             if items.is_valid():
                 items.instance = self.object
                 items.save()

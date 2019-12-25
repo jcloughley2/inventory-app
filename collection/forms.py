@@ -28,7 +28,7 @@ class ItemForm(forms.ModelForm):
 ItemFormSet = inlineformset_factory(List, Item, form=ItemForm, fields=['name'], extra=1, can_delete=True)
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, Div, HTML, ButtonHolder, Submit
+from crispy_forms.layout import Layout, Field, Hidden, Fieldset, Div, HTML, ButtonHolder, Submit
 from .custom_layout_object import *
 
 class ListForm(forms.ModelForm):
@@ -48,11 +48,11 @@ class ListForm(forms.ModelForm):
             Div(
                 Field('name'),
                 Field('description'),
-                Field('slug'),
+                Hidden('slug', 'slug-placeholder'),
                 Fieldset('Add items',
                     Formset('items')), #what?
                 HTML("<br>"),
-                ButtonHolder(Submit('submit', 'save')),
+                ButtonHolder(Submit('submit', 'save')), 
                 )
             )
 
