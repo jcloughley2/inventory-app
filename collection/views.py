@@ -134,6 +134,36 @@ class ListCreate(CreateView):
     def get_success_url(self):
         return reverse_lazy('list_detail', kwargs={'slug': self.object.slug})
 
+class ListUpdate(UpdateView):
+    model = List
+    template_name = 'lists/list_create.html'
+    form_class = ListForm
+    success_url = None
+
+    def get_context_data(self, **kwargs):
+        data = super(ListUpdate, self).get_context_data(**kwargs) #what?
+        if self.request.POST:
+            data['items'] = ItemFormSet(self.request.POST, instance=self.object)
+        else:
+            data['items'] = ItemFormSet(instance=self.object) 
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        items = context['items']
+        with transaction.atomic():
+            form.instance.created_by = self.request.user
+            self.object = form.save()
+            self.object.user = self.request.user
+            self.object.slug = slugify(self.object.name) + "-" + str(self.object.pk)
+            if items.is_valid():
+                items.instance = self.object
+                items.save()
+        return super(ListUpdate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('list_detail', kwargs={'slug': self.object.slug})
+
 
 class ListDetail(DetailView):
     model = List

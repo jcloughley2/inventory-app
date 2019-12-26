@@ -11,15 +11,15 @@ from django.contrib.auth.views import(
 from collection.backends import MyRegistrationView
 from django.views.generic import ListView, TemplateView, RedirectView
 from django.urls import path
-from collection.views import Home, ListCreate, ListDetail
+from collection.views import Home, ListCreate, ListDetail, ListUpdate
 
 urlpatterns = [
     path('',Home.as_view(template_name='index.html'),name='home'),
     path('accounts/create_list/', ListCreate.as_view(template_name='lists/create_list.html'), name='registration_create_list'),
     path('lists/<slug>/', ListDetail.as_view(template_name='lists/list_detail.html'), name='list_detail'),
+    path('lists/<slug>/edit/', ListUpdate.as_view(template_name='lists/create_list.html'), name='edit_list'),
     path('about/',TemplateView.as_view(template_name='about.html'),name='about'),
     path('contact/',TemplateView.as_view(template_name='contact.html'),name='contact'),
-    path('lists/<slug>/edit/', views.edit_list,name='edit_list'),
     path('accounts/password/reset/',PasswordResetView.as_view(),name="password_reset"),
     path('accounts/password/reset/done/',PasswordResetDoneView.as_view(),name="password_reset_done"),
     path('accounts/password/reset/<uidb64>/<token>/',PasswordResetConfirmView.as_view(),name="password_reset_confirm"),
