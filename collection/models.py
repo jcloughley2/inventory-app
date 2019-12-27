@@ -14,7 +14,7 @@ class List(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
-
+    done = models.BooleanField(default=False)
     list = models.ForeignKey(List, related_name='includeditems', on_delete=models.CASCADE, #could be a problem?
         blank=True, null=True)
 

@@ -8,7 +8,7 @@ class ItemForm(forms.ModelForm):
         model = Item
         exclude = ()
 
-ItemFormSet = inlineformset_factory(List, Item, form=ItemForm, fields=['name'], extra=1, can_delete=True)
+ItemFormSet = inlineformset_factory(List, Item, form=ItemForm, fields=['done','name'], extra=1, can_delete=True)
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Hidden, Fieldset, Div, HTML, ButtonHolder, Submit

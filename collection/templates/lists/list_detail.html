@@ -7,7 +7,7 @@
     <h1>{{ list.name }}</h1>
     <ul>
         {% for item in list.includeditems.all %}
-            <li> {{item.name}}</li>
+            <li>{{item.done}}{{item.name}}</li>
         {% endfor %}
     </ul>
     <p>{{ list.description }}</p>
