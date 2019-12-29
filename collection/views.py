@@ -10,10 +10,31 @@ from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView 
 
-class Home(ListView):
-   model = List
+class home(ListView):
+    model = List
 
+    def get_queryset(self):
+        return self.model.objects.filter(public=True)
 
+class browse(ListView):
+    model = List
+
+    def get_queryset(self):
+        return self.model.objects.filter(public=True)
+
+class profile(ListView):
+    model = List
+
+    def get_queryset(self, *args, **kwargs):
+        # return self.model.objects.filter(public=False)
+        return self.model.objects.filter(user__username=self.kwargs['username'], public=True)
+
+class myhome(ListView):
+    model = List
+
+    def get_queryset(self, *args, **kwargs):
+        # return self.model.objects.filter(public=False)
+        return self.model.objects.filter(user__username=self.request.user)
 
 def create_list(request):
     form_class = ListForm
@@ -173,6 +194,9 @@ class ListDetail(DetailView):
         context = super(ListDetail, self).get_context_data(**kwargs)
         return context
 
+
+
+
 # def list_detail(request, slug):
 #     # grab the object...
 #     list = List.objects.get(slug=slug)
@@ -181,4 +205,3 @@ class ListDetail(DetailView):
 #     return render(request, 'lists/list_detail.html', {
 #         'list': list,
 #     })
-

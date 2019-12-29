@@ -29,7 +29,8 @@ class ListForm(forms.ModelForm):
                 Field('name'),
                 Field('description'),
                 Fieldset('Add items',
-                    Formset('items')), #what?
+                    Formset('items')),
+                Field('public'),
                 HTML("<br>"),
                 ButtonHolder(Submit('submit', 'save')), 
                 )
