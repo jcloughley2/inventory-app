@@ -14,7 +14,7 @@ var paths = {
     dest: 'collection/static/css'
   },
   scripts: {
-    src: 'collection/static/js/*.js',
+    src: 'collection/static/js/files/*.js',
     dest: 'collection/static/js'
   }
 };
@@ -28,7 +28,7 @@ function styles() {
 
 // Concatenate
 function scripts() {
-  return gulp.src(paths.scripts.src, { sourcemaps: true })
+  return gulp.src(paths.scripts.src)
         .pipe(concat('all.js'))
         .pipe(gulp.dest(paths.scripts.dest));
 };

@@ -252,9 +252,3 @@ if (typeof window === 'undefined' || typeof window.getComputedStyle !== 'functio
 		return el;
 	};
 }
-
-autosize($('.list-title'));  
-autosize($('.list-description'));  
-autosize($('.textarea'));  
-
-console.log('doing something')

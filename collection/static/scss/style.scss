@@ -442,6 +442,8 @@ $color-divider: #EAEAEA;
 $space-s: 4px;
 $space-m: 8px;
 $space-l: 16px;
+$space-xl: 32px;
+$space-xxl: 64px;
 
 * {
 	box-sizing: border-box;
@@ -563,4 +565,46 @@ header {
 form p {
 	display: flex;
 	flex-flow: column nowrap;
+}
+
+
+.list-title {
+	font-size: 32px;
+	width: 600px;
+	appearance: none;
+	border: none;
+	outline: none;
+	margin-bottom: $space-xl;
+	padding: 0;
+	line-height: 44px;
+	height: 44px;
+}
+
+.list-description {
+	font-size: 24px;
+    appearance: none;
+    border: none;
+    outline: none;
+    margin-bottom: $space-xl;
+    line-height: 32px;
+    height: 32px;
+    width: 500px;
+    overflow: hidden;
+}
+
+.textarea {
+	font-size: 24px;
+    appearance: none;
+    border: none;
+    outline: none;
+    margin-bottom: $space-xl;
+    line-height: 32px;
+    height: 32px;
+    width: 500px;
+    overflow: hidden; 
+}
+
+.dynamic-form label {
+	font-size: 0;
+
 }

@@ -451,3 +451,39 @@ header {
 form p {
   display: flex;
   flex-flow: column nowrap; }
+
+.list-title {
+  font-size: 32px;
+  width: 600px;
+  appearance: none;
+  border: none;
+  outline: none;
+  margin-bottom: 32px;
+  padding: 0;
+  line-height: 44px;
+  height: 44px; }
+
+.list-description {
+  font-size: 24px;
+  appearance: none;
+  border: none;
+  outline: none;
+  margin-bottom: 32px;
+  line-height: 32px;
+  height: 32px;
+  width: 500px;
+  overflow: hidden; }
+
+.textarea {
+  font-size: 24px;
+  appearance: none;
+  border: none;
+  outline: none;
+  margin-bottom: 32px;
+  line-height: 32px;
+  height: 32px;
+  width: 500px;
+  overflow: hidden; }
+
+.dynamic-form label {
+  font-size: 0; }
