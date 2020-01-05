@@ -461,7 +461,8 @@ form p {
   margin-bottom: 32px;
   padding: 0;
   line-height: 44px;
-  height: 44px; }
+  height: 44px;
+  resize: none; }
 
 .list-description {
   font-size: 24px;
@@ -472,18 +473,45 @@ form p {
   line-height: 32px;
   height: 32px;
   width: 500px;
-  overflow: hidden; }
+  overflow: hidden;
+  resize: none; }
 
-.textarea {
+.item .textarea {
   font-size: 24px;
   appearance: none;
   border: none;
   outline: none;
-  margin-bottom: 32px;
   line-height: 32px;
   height: 32px;
   width: 500px;
-  overflow: hidden; }
+  overflow: hidden;
+  resize: none;
+  display: inline-block;
+  float: left; }
 
 .dynamic-form label {
   font-size: 0; }
+
+.formset_row-item {
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  display: block;
+  display: flex;
+  padding: 8px;
+  justify-content: flex-start; }
+  .formset_row-item div[id$="DELETE"] {
+    display: none; }
+  .formset_row-item .controls {
+    display: inline-block;
+    float: left; }
+  .formset_row-item .checkbox {
+    font-size: 0;
+    margin-right: 16px; }
+  .formset_row-item .item-delete {
+    visibility: hidden;
+    display: inline-block;
+    margin-left: auto;
+    align-self: center; }
+  .formset_row-item:hover .item-delete {
+    visibility: visible; }

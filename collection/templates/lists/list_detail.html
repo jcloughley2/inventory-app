@@ -6,7 +6,7 @@
 {% block content %}
     <h1>{{ list.name }}</h1>
     <ul>
-        {% for item in list.includeditems.all %}
+        {% for item in list.item.all %}
             <li>{{item.done}}{{item.name}}</li>
         {% endfor %}
     </ul>

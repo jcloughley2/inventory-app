@@ -5,6 +5,8 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Hidden, Fieldset, Div, HTML, ButtonHolder, Submit
 from .custom_layout_object import *
 
+import re
+
 class ItemForm(forms.ModelForm):
 
     class Meta:
@@ -12,14 +14,22 @@ class ItemForm(forms.ModelForm):
         exclude = []
 
     def __init__(self, *args, **kwargs):
-        super(ItemForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
+
+        formtag_prefix = re.sub('-[0-9]+$', '', kwargs.get('prefix', ''))
+
         self.helper = FormHelper()
-        self.helper.form_tag = True
+        self.helper.form_tag = False
+        self.fields['name'].label = False        
+        self.fields['done'].label = False
         self.helper.layout = Layout(
             Div(
-                Field('name', placeholder="Add Item", css_class="item-title", autocomplete='off'),
-                )
+                Field('done', css_class="item-done",),
+                Field('name', placeholder="Add Item", css_class="item-name", autocomplete='off'),
+                Field('DELETE', css_class="item-delete",),
+                css_class='formset_row-{}'.format(formtag_prefix)
             )
+        )
 
 ItemFormSet = inlineformset_factory(List, Item, form=ItemForm, fields=['done','name'], extra=1, can_delete=True)
 
@@ -43,5 +53,5 @@ class ListForm(forms.ModelForm):
                 Field('public'),
                 HTML("<br>"),
                 ButtonHolder(Submit('submit', 'save')), 
-                )
             )
+        )

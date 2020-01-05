@@ -10,7 +10,7 @@
 				<a href="#" class="list-tag">Tag</a>
 				<h3 class="mb-0">{{ list.name }}</h3>
 				<ul>
-        			{% for item in list.includeditems.all %}
+        			{% for item in list.item.all %}
             			<li> {{item.name}}</li>
         			{% endfor %}
     			</ul>

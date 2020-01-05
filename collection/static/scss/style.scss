@@ -578,6 +578,7 @@ form p {
 	padding: 0;
 	line-height: 44px;
 	height: 44px;
+	resize: none;
 }
 
 .list-description {
@@ -590,21 +591,65 @@ form p {
     height: 32px;
     width: 500px;
     overflow: hidden;
+	resize: none;
 }
 
-.textarea {
+.item .textarea {
 	font-size: 24px;
     appearance: none;
     border: none;
     outline: none;
-    margin-bottom: $space-xl;
     line-height: 32px;
     height: 32px;
     width: 500px;
     overflow: hidden; 
+	resize: none;
+	display: inline-block;
+	float: left;
+
 }
 
 .dynamic-form label {
 	font-size: 0;
+}
 
+.formset_row-item {
+	border: 1px solid $color-divider;
+	border-radius: 4px;
+	margin-bottom: $space-l;
+	display: block;
+	display: flex;
+	padding: $space-m;
+	justify-content: flex-start;
+
+
+	div[id$="DELETE"] {
+
+  		display: none;
+	}
+
+	.controls {
+		display: inline-block;
+		float: left;
+	}
+
+	.checkbox {
+		font-size: 0;
+		margin-right: $space-l;
+	}
+
+	.item-delete {
+		visibility: hidden;
+		display: inline-block;
+		 margin-left: auto;
+		 align-self: center;
+	}
+
+	&:hover {
+
+		.item-delete {
+			visibility: visible;
+		}
+
+	}
 }
