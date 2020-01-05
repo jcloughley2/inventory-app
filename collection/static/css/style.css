@@ -477,12 +477,12 @@ form p {
   resize: none; }
 
 .item-name {
-  font-size: 24px;
+  font-size: 16px;
   appearance: none;
   border: none;
   outline: none;
-  line-height: 32px;
-  height: 32px;
+  line-height: 24px;
+  height: 24px;
   width: 500px;
   overflow: hidden;
   resize: none;
@@ -495,7 +495,7 @@ form p {
 .formset_row-item {
   border: 1px solid #EAEAEA;
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   display: block;
   display: flex;
   padding: 8px;

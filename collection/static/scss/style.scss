@@ -595,18 +595,17 @@ form p {
 }
 
 .item-name {
-	font-size: 24px;
+	font-size: 16px;
     appearance: none;
     border: none;
     outline: none;
-    line-height: 32px;
-    height: 32px;
+    line-height: 24px;
+    height: 24px;
     width: 500px;
     overflow: hidden; 
 	resize: none;
 	display: inline-block;
 	float: left;
-
 }
 
 .dynamic-form label {
@@ -616,7 +615,7 @@ form p {
 .formset_row-item {
 	border: 1px solid $color-divider;
 	border-radius: 4px;
-	margin-bottom: $space-l;
+	margin-bottom: $space-m;
 	display: block;
 	display: flex;
 	padding: $space-m;
@@ -624,7 +623,6 @@ form p {
 
 
 	div[id$="DELETE"] {
-
   		display: none;
 	}
 
@@ -641,8 +639,8 @@ form p {
 	.item-delete {
 		visibility: hidden;
 		display: inline-block;
-		 margin-left: auto;
-		 align-self: center;
+		margin-left: auto;
+		align-self: center;
 	}
 
 	&:hover {

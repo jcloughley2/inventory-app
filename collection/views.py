@@ -14,20 +14,20 @@ class home(ListView):
     model = List
 
     def get_queryset(self):
-        return self.model.objects.filter(public=True)
+        return self.model.objects.filter(public='public')
 
 class browse(ListView):
     model = List
 
     def get_queryset(self):
-        return self.model.objects.filter(public=True)
+        return self.model.objects.filter(public='public')
 
 class profile(ListView):
     model = List
 
     def get_queryset(self, *args, **kwargs):
         # return self.model.objects.filter(public=False)
-        return self.model.objects.filter(user__username=self.kwargs['username'], public=True)
+        return self.model.objects.filter(user__username=self.kwargs['username'], public='public')
 
 class myhome(ListView):
     model = List

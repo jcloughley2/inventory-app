@@ -2,9 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class List(models.Model):
+    PUBLIC = (
+        ('private', 'Private'),
+        ('public', 'Public'),
+    )
     name = models.TextField(max_length=255)
     description = models.TextField()
-    public = models.BooleanField(default=False)
+    public = models.CharField(max_length=20, choices=PUBLIC, default='private')
     slug = models.SlugField(unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,
         blank=True, null=True)
