@@ -476,16 +476,13 @@ form p {
   overflow: hidden;
   resize: none; }
 
-<<<<<<< Updated upstream
 .item-name {
   font-size: 24px;
-=======
-.item .textarea {
->>>>>>> Stashed changes
   appearance: none;
   border: none;
   outline: none;
-  height: 24px;
+  line-height: 32px;
+  height: 32px;
   width: 500px;
   overflow: hidden;
   resize: none;
