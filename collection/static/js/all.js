@@ -253,8 +253,13 @@ if (typeof window === 'undefined' || typeof window.getComputedStyle !== 'functio
 	};
 }
 
-autosize($('.list-title'));  
-autosize($('.list-description'));  
-autosize($('.textarea'));  
+$( document ).ready(function() {
+    
+	console.log('doc ready...') 
 
-console.log('doing something') 
+	autosize($('.list-title'));  
+	autosize($('.list-description'));  
+	autosize($('.item-name'));  
+});
+
+

@@ -16,7 +16,8 @@ class ItemForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        formtag_prefix = re.sub('-[0-9]+$', '', kwargs.get('prefix', ''))
+        formtag_prefix = re.sub('-[0-9]+$', '', kwargs.get('prefix', '')) 
+        #print (formtag_prefix)  # Only on stdout
 
         self.helper = FormHelper()
         self.helper.form_tag = False
@@ -27,7 +28,7 @@ class ItemForm(forms.ModelForm):
                 Field('done', css_class="item-done",),
                 Field('name', placeholder="Add Item", css_class="item-name", autocomplete='off'),
                 Field('DELETE', css_class="item-delete",),
-                css_class='formset_row-{}'.format(formtag_prefix)
+                css_class='test formset_row-{}'.format(formtag_prefix)
             )
         )
 

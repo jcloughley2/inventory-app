@@ -17,10 +17,13 @@
 <script src="{% static 'js/jquery.formset.js' %}">
 </script>
 <script type="text/javascript">
+
+    console.log('.formset_row-{{ formset.prefix }}');
+
     $('.formset_row-{{ formset.prefix }}').formset({
         addText: 'add another',
         deleteText: 'remove',
-        formCssClass: 'item', 
         deleteCssClass: 'item-delete',  
+        prefix: '{{ formset.prefix }}',
     });
 </script>
